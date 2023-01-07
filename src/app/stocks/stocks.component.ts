@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Stock } from './stock';
-import { STOCKS } from './mock-stocks';
+import { StocksService } from '../services/stock.service';
 
 @Component({
   selector: 'app-stock',
@@ -9,9 +10,19 @@ import { STOCKS } from './mock-stocks';
   styleUrls: ['./stocks.component.scss']
 })
 export class StockComponent implements OnInit {
-  stocks = STOCKS
+  stocks: Stock[] = []
 
-  constructor() { }
-  ngOnInit(): void {
+  getData(){
+    this.stocksService.getStocks().subscribe(response => {
+      this.stocks = response
+    })
   }
+
+  constructor(
+    private stocksService: StocksService
+  ) {  }
+
+  ngOnInit(): void {
+    this.getData();
+  }  
 }
