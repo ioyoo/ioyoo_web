@@ -24,5 +24,8 @@ export class StockComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    setInterval(() => { 
+      this.getData(); 
+    }, 10000);
   }  
 }
