@@ -3,5 +3,5 @@ import { Component } from '@angular/core';
 
 export interface Stock {
     name: string;
-    value: number;
+    score: number;
 }
